@@ -10,8 +10,10 @@ export default function Home() {
   const [amount, setAmount] = useState(5);
 
   const { sendTransaction, isPending, data } = useSendTransaction({
-    to: wallet,
-    value: parseEther((amount * 0.001).toFixed(3)),
+    request: {
+      to: wallet,
+      value: parseEther((amount * 0.001).toFixed(3)),
+    },
   });
 
   return (
@@ -46,7 +48,7 @@ export default function Home() {
       {data && (
         <p className="mt-4 text-green-600 text-sm">
           ✅ Transação enviada!{" "}
-          <a href={`https://basescan.org/tx/${data}`} target="_blank" className="underline">
+          <a href={`https://basescan.org/tx/${data.hash}`} target="_blank" className="underline">
             Ver no explorer
           </a>
         </p>
