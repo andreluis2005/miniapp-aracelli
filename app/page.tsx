@@ -9,12 +9,7 @@ const wallet = "0xFeb23dC4E0eb05B62AA8b5b6bd455de15DECb404";
 export default function Home() {
   const [amount, setAmount] = useState(5);
 
-  const { sendTransaction, isPending, data } = useSendTransaction({
-    request: {
-      to: wallet,
-      value: parseEther((amount * 0.001).toFixed(3)),
-    },
-  });
+  const { sendTransaction, isPending, data } = useSendTransaction();
 
   return (
     <main className="flex flex-col items-center justify-center p-4 min-h-screen bg-white">
@@ -38,17 +33,29 @@ export default function Home() {
       </div>
 
       <button
-        onClick={() => sendTransaction()}
+        onClick={() =>
+          sendTransaction({
+            request: {
+              to: wallet,
+              value: parseEther((amount * 0.001).toFixed(3)),
+            },
+          })
+        }
         disabled={isPending}
         className="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700"
       >
         {isPending ? "Enviando..." : "Doar"}
       </button>
 
-      {data && (
+      {data?.hash && (
         <p className="mt-4 text-green-600 text-sm">
           ✅ Transação enviada!{" "}
-          <a href={`https://basescan.org/tx/${data.hash}`} target="_blank" className="underline">
+          <a
+            href={`https://basescan.org/tx/${data.hash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
             Ver no explorer
           </a>
         </p>
