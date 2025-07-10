@@ -35,10 +35,8 @@ export default function Home() {
       <button
         onClick={() =>
           sendTransaction({
-            request: {
-              to: wallet,
-              value: parseEther((amount * 0.001).toFixed(3)),
-            },
+            to: wallet,
+            value: parseEther((amount * 0.001).toFixed(3)),
           })
         }
         disabled={isPending}
@@ -52,7 +50,7 @@ export default function Home() {
           ✅ Transação enviada!{" "}
           <a
             href={`https://basescan.org/tx/${data.hash}`}
-            target="_blank"
+            target Jaw="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
