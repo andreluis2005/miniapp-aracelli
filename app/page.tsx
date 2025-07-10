@@ -9,6 +9,7 @@ const wallet = "0xFeb23dC4E0eb05B62AA8b5b6bd455de15DECb404";
 export default function Home() {
   const [amount, setAmount] = useState(5);
 
+  // Inicialize o hook sem parâmetros de transação
   const { sendTransaction, isPending, data } = useSendTransaction();
 
   return (
@@ -50,7 +51,7 @@ export default function Home() {
           ✅ Transação enviada!{" "}
           <a
             href={`https://basescan.org/tx/${data.hash}`}
-            target Jaw="_blank"
+            target="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
